@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="list">
+    <div class="card">
+      <div class="card-header float-left">
+        <h4 class="float-left">Details List</h4>
+        <span>
+              <button data-toggle="modal" (click)="viewimport()" data-target="#exampleModal" type="button" class="btn btn-primary">Import</button>
+              <button (click)="export()" type="button" class="btn btn-primary">Export</button>
+            </span>
+        <div class="float-right d-flex justify-content-start">
+          <label style="margin-top: 8px;">Select Date:   </label>
+          <span  class="mr-2">
+              <input placeholder="Select date" type="text" class="form-control"  #dp="bsDaterangepicker" bsDaterangepicker
+              [bsConfig]="{  rangeInputFormat: 'MM/DD/YYYY'}"  (bsValueChange)="onValueChange($event)" />
+          </span>
+            <span>
+                <a  [routerLink]="['']">
+                    <button type="button" class="btn btn-primary">Create</button>
+                  </a>
+            </span> 
+          </div>
+      </div>
+
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Dob</th>
+              <th scope="col">Qualification</th>
+              <th scope="col">College</th>
+              <th scope="col">Level</th>
+              <th scope="col">University</th>
+              <th scope="col">Address</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let details of personalDetails">
+              <td>{{details.name}}</td>
+              <td>{{details.email}}</td>
+              <td>{{details.phone}}</td>
+              <td>{{details.dob}}</td>
+              <td>{{details.qualification}}</td>
+              <td>{{details.college}}</td>
+              <td>{{details.type}}</td>
+              <td>{{details.university}}</td>
+              <td>{{details.address}}</td>
+              <td>
+                <span class="text-success" [routerLink]="['']"
+                  [queryParams]="{ id: details?._id , btnname: 'edit'}" title="Edit"
+                  style="outline: none;cursor: pointer;">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </span>
+                <span class="text-danger ml-1" style="outline: none;cursor: pointer;">
+                  <i class="fa fa-trash" aria-hidden="true" (click)="delete(details?._id)"></i>
+                </span>
+                <span class="text-success ml-1" style="outline: none; cursor: pointer;">
+                  <i data-toggle="modal" data-target="#exampleModal" class="fa fa-eye" (click)="view(details)" aria-hidden="true"></i>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Company Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-responsive">
+          <thead>
+          <tr>
+            <th scope="col">Designation</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Description</th>
+            <th scope="col">Achievement</th>
+            <th scope="col">Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of dataArr">{{dataArr}}
+            <td>{{detail.designation}}</td>
+            <td>{{detail.experience}}</td>
+            <td>{{detail.desc}}</td>
+            <td>{{detail.achievements}}</td>
+            <td>{{detail.skills}}</td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
